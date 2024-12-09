@@ -1,14 +1,21 @@
 pipeline {
     agent any
-    environment {
-        PATH = "/usr/bin:/bin:$PATH" // Incluindo ambos os caminhos do Python 3
-    }
 
     stages {
+        stage('Instalar Python 3') {
+            steps {
+                script {
+                    echo 'Atualizando pacotes e instalando Python 3...'
+                    sh '''
+                    apt-get update && apt-get install -y python3
+                    '''
+                }
+            }
+        }
+
         stage('Baixar index.html') {
             steps {
                 script {
-                    // Baixar o arquivo index.html diretamente do repositório GitLab
                     echo 'Baixando o arquivo index.html do GitLab...'
                     sh 'curl -o index.html https://gitlab.com/Relax-112/Jenkins_git/-/raw/main/index.html'
                 }
@@ -18,7 +25,6 @@ pipeline {
         stage('Servir index.html') {
             steps {
                 script {
-                    // Servir o arquivo index.html com Python HTTP Server
                     echo 'Iniciando servidor HTTP...'
                     sh 'python3 -m http.server 30000 --bind 0.0.0.0'
                 }
