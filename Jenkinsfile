@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/usr/bin:$PATH" // Ajuste o caminho conforme necessário
+    }
 
     stages {
         stage('Baixar index.html') {
