@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "/usr/bin:$PATH" // Ajuste o caminho conforme necessário
+        PATH = "/usr/bin:/bin:$PATH" // Incluindo ambos os caminhos do Python 3
     }
 
     stages {
