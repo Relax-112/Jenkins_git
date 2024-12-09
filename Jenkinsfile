@@ -1,17 +1,24 @@
 pipeline {
-    agent { label 'agent1' }  // Usa o agente 'agent1'
-    
+    agent any
+
     stages {
-        stage('Build') {
+        stage('Baixar index.html') {
             steps {
-                echo 'Building on agent1...'
-                // Comandos de build aqui
+                script {
+                    // Baixar o arquivo index.html diretamente do repositório GitLab
+                    echo 'Baixando o arquivo index.html do GitLab...'
+                    sh 'curl -o index.html https://gitlab.com/Relax-112/Jenkins_git/-/raw/main/index.html'
+                }
             }
         }
-        stage('Test') {
+
+        stage('Servir index.html') {
             steps {
-                echo 'Testing on agent1...'
-                // Comandos de teste aqui
+                script {
+                    // Servir o arquivo index.html com Python HTTP Server
+                    echo 'Iniciando servidor HTTP...'
+                    sh 'python3 -m http.server 8000 --bind 0.0.0.0'
+                }
             }
         }
     }
