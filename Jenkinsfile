@@ -17,7 +17,7 @@ pipeline {
                 script {
                     // Servir o arquivo index.html com Python HTTP Server
                     echo 'Iniciando servidor HTTP...'
-                    sh 'python3 -m http.server 8000 --bind 0.0.0.0'
+                    sh 'python3 -m http.server 30000 --bind 0.0.0.0'
                 }
             }
         }
