@@ -5,10 +5,10 @@ pipeline {
         stage('Instalar Python 3') {
             steps {
                 script {
-                    echo 'Atualizando pacotes e instalando Python 3 como root...'
+                    echo 'Atualizando pacotes e instalando Python 3...'
                     sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y python3
+                    apt-get update
+                    apt-get install -y python3 curl
                     '''
                 }
             }
