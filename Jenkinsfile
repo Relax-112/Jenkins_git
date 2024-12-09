@@ -2,17 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Instalar Python 3') {
-            steps {
-                script {
-                    echo 'Atualizando pacotes e instalando Python 3...'
-                    sh '''
-                    apt-get update && apt-get install -y python3
-                    '''
-                }
-            }
-        }
-
         stage('Baixar index.html') {
             steps {
                 script {
